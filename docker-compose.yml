@@ -1,0 +1,26 @@
+services:
+  append-number:
+    build:
+      context: ./append-number
+      dockerfile: Dockerfile
+    volumes:
+      - ./append-number/:/app/
+    
+    ports:
+      - "3000:3000"
+    depends_on:
+      - to-uppercase
+  to-uppercase:
+    build:
+      context: ./to-uppercase
+      dockerfile: Dockerfile
+    volumes:
+      - ./to-uppercase/:/app/
+    depends_on:
+      - random-word
+  random-word:
+    build:
+      context: ./random-word
+      dockerfile: Dockerfile
+    volumes:
+      - ./random-word:/app/
